@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xsw.dao.TeamsDTOMapper" >
+  <resultMap id="BaseResultMap" type="com.xsw.model.TeamsDTO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="teamNo" property="teamno" jdbcType="VARCHAR" />
+    <result column="teamId" property="teamid" jdbcType="VARCHAR" />
+    <result column="productId" property="productid" jdbcType="VARCHAR" />
+    <result column="otherTeamId" property="otherteamid" jdbcType="VARCHAR" />
+    <result column="roadName" property="roadname" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="VARCHAR" />
+    <result column="startTime" property="starttime" jdbcType="VARCHAR" />
+    <result column="enddate" property="enddate" jdbcType="VARCHAR" />
+    <result column="endTime" property="endtime" jdbcType="VARCHAR" />
+    <result column="days" property="days" jdbcType="CHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="noticeDay" property="noticeday" jdbcType="INTEGER" />
+    <result column="paydate" property="paydate" jdbcType="VARCHAR" />
+    <result column="numbers" property="numbers" jdbcType="INTEGER" />
+    <result column="child" property="child" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="updateStatus" property="updatestatus" jdbcType="CHAR" />
+    <result column="groupStatus" property="groupstatus" jdbcType="VARCHAR" />
+    <result column="paymentStatus" property="paymentstatus" jdbcType="CHAR" />
+    <result column="isShopping" property="isshopping" jdbcType="CHAR" />
+    <result column="room" property="room" jdbcType="INTEGER" />
+    <result column="orderFlag" property="orderflag" jdbcType="CHAR" />
+    <result column="srcFlag" property="srcflag" jdbcType="CHAR" />
+    <result column="peerId" property="peerid" jdbcType="VARCHAR" />
+    <result column="peerName" property="peername" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="costamount" property="costamount" jdbcType="DECIMAL" />
+    <result column="rate" property="rate" jdbcType="VARCHAR" />
+    <result column="ratePrice" property="rateprice" jdbcType="DECIMAL" />
+    <result column="calc" property="calc" jdbcType="CHAR" />
+    <result column="calcAmount" property="calcamount" jdbcType="DECIMAL" />
+    <result column="firstCalc" property="firstcalc" jdbcType="DECIMAL" />
+    <result column="firstAmount" property="firstamount" jdbcType="DECIMAL" />
+    <result column="endAmount" property="endamount" jdbcType="DECIMAL" />
+    <result column="callname" property="callname" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="callname1" property="callname1" jdbcType="VARCHAR" />
+    <result column="mobile1" property="mobile1" jdbcType="VARCHAR" />
+    <result column="email1" property="email1" jdbcType="VARCHAR" />
+    <result column="organId" property="organid" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="updateuser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="checkTime" property="checktime" jdbcType="TIMESTAMP" />
+    <result column="checkUser" property="checkuser" jdbcType="VARCHAR" />
+    <result column="checkStatus" property="checkstatus" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xsw.model.TeamsDTOWithBLOBs" extends="BaseResultMap" >
+    <result column="features" property="features" jdbcType="LONGVARCHAR" />
+    <result column="include" property="include" jdbcType="LONGVARCHAR" />
+    <result column="notInclude" property="notinclude" jdbcType="LONGVARCHAR" />
+    <result column="guideId" property="guideid" jdbcType="LONGVARCHAR" />
+    <result column="carId" property="carid" jdbcType="LONGVARCHAR" />
+    <result column="hotel" property="hotel" jdbcType="LONGVARCHAR" />
+    <result column="food" property="food" jdbcType="LONGVARCHAR" />
+    <result column="planTicket" property="planticket" jdbcType="LONGVARCHAR" />
+    <result column="ticket" property="ticket" jdbcType="LONGVARCHAR" />
+    <result column="home" property="home" jdbcType="LONGVARCHAR" />
+    <result column="checkRemark" property="checkremark" jdbcType="LONGVARCHAR" />
+    <result column="payComent" property="paycoment" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, teamNo, teamId, productId, otherTeamId, roadName, startdate, startTime, enddate, 
+    endTime, days, createtime, noticeDay, paydate, numbers, child, type, status, updateStatus, 
+    groupStatus, paymentStatus, isShopping, room, orderFlag, srcFlag, peerId, peerName, 
+    currency, amount, costamount, rate, ratePrice, calc, calcAmount, firstCalc, firstAmount, 
+    endAmount, callname, mobile, email, callname1, mobile1, email1, organId, createuser, 
+    updatetime, updateuser, checkTime, checkUser, checkStatus
+  </sql>
+  <sql id="Blob_Column_List" >
+    features, include, notInclude, guideId, carId, hotel, food, planTicket, ticket, home, 
+    checkRemark, payComent, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tsys_beauty_teams
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tsys_beauty_teams
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.model.TeamsDTOWithBLOBs" >
+    insert into tsys_beauty_teams (id, teamNo, teamId, 
+      productId, otherTeamId, roadName, 
+      startdate, startTime, enddate, 
+      endTime, days, createtime, 
+      noticeDay, paydate, numbers, 
+      child, type, status, updateStatus, 
+      groupStatus, paymentStatus, isShopping, 
+      room, orderFlag, srcFlag, 
+      peerId, peerName, currency, 
+      amount, costamount, rate, 
+      ratePrice, calc, calcAmount, 
+      firstCalc, firstAmount, endAmount, 
+      callname, mobile, email, 
+      callname1, mobile1, email1, 
+      organId, createuser, updatetime, 
+      updateuser, checkTime, checkUser, 
+      checkStatus, features, include, 
+      notInclude, guideId, carId, 
+      hotel, food, planTicket, 
+      ticket, home, checkRemark, 
+      payComent, remark)
+    values (#{id,jdbcType=BIGINT}, #{teamno,jdbcType=VARCHAR}, #{teamid,jdbcType=VARCHAR}, 
+      #{productid,jdbcType=VARCHAR}, #{otherteamid,jdbcType=VARCHAR}, #{roadname,jdbcType=VARCHAR}, 
+      #{startdate,jdbcType=VARCHAR}, #{starttime,jdbcType=VARCHAR}, #{enddate,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{days,jdbcType=CHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{noticeday,jdbcType=INTEGER}, #{paydate,jdbcType=VARCHAR}, #{numbers,jdbcType=INTEGER}, 
+      #{child,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{updatestatus,jdbcType=CHAR}, 
+      #{groupstatus,jdbcType=VARCHAR}, #{paymentstatus,jdbcType=CHAR}, #{isshopping,jdbcType=CHAR}, 
+      #{room,jdbcType=INTEGER}, #{orderflag,jdbcType=CHAR}, #{srcflag,jdbcType=CHAR}, 
+      #{peerid,jdbcType=VARCHAR}, #{peername,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{costamount,jdbcType=DECIMAL}, #{rate,jdbcType=VARCHAR}, 
+      #{rateprice,jdbcType=DECIMAL}, #{calc,jdbcType=CHAR}, #{calcamount,jdbcType=DECIMAL}, 
+      #{firstcalc,jdbcType=DECIMAL}, #{firstamount,jdbcType=DECIMAL}, #{endamount,jdbcType=DECIMAL}, 
+      #{callname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{callname1,jdbcType=VARCHAR}, #{mobile1,jdbcType=VARCHAR}, #{email1,jdbcType=VARCHAR}, 
+      #{organid,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{updateuser,jdbcType=VARCHAR}, #{checktime,jdbcType=TIMESTAMP}, #{checkuser,jdbcType=VARCHAR}, 
+      #{checkstatus,jdbcType=CHAR}, #{features,jdbcType=LONGVARCHAR}, #{include,jdbcType=LONGVARCHAR}, 
+      #{notinclude,jdbcType=LONGVARCHAR}, #{guideid,jdbcType=LONGVARCHAR}, #{carid,jdbcType=LONGVARCHAR}, 
+      #{hotel,jdbcType=LONGVARCHAR}, #{food,jdbcType=LONGVARCHAR}, #{planticket,jdbcType=LONGVARCHAR}, 
+      #{ticket,jdbcType=LONGVARCHAR}, #{home,jdbcType=LONGVARCHAR}, #{checkremark,jdbcType=LONGVARCHAR}, 
+      #{paycoment,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.model.TeamsDTOWithBLOBs" >
+    insert into tsys_beauty_teams
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="teamno != null" >
+        teamNo,
+      </if>
+      <if test="teamid != null" >
+        teamId,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="otherteamid != null" >
+        otherTeamId,
+      </if>
+      <if test="roadname != null" >
+        roadName,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="starttime != null" >
+        startTime,
+      </if>
+      <if test="enddate != null" >
+        enddate,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="noticeday != null" >
+        noticeDay,
+      </if>
+      <if test="paydate != null" >
+        paydate,
+      </if>
+      <if test="numbers != null" >
+        numbers,
+      </if>
+      <if test="child != null" >
+        child,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="updatestatus != null" >
+        updateStatus,
+      </if>
+      <if test="groupstatus != null" >
+        groupStatus,
+      </if>
+      <if test="paymentstatus != null" >
+        paymentStatus,
+      </if>
+      <if test="isshopping != null" >
+        isShopping,
+      </if>
+      <if test="room != null" >
+        room,
+      </if>
+      <if test="orderflag != null" >
+        orderFlag,
+      </if>
+      <if test="srcflag != null" >
+        srcFlag,
+      </if>
+      <if test="peerid != null" >
+        peerId,
+      </if>
+      <if test="peername != null" >
+        peerName,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="costamount != null" >
+        costamount,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="rateprice != null" >
+        ratePrice,
+      </if>
+      <if test="calc != null" >
+        calc,
+      </if>
+      <if test="calcamount != null" >
+        calcAmount,
+      </if>
+      <if test="firstcalc != null" >
+        firstCalc,
+      </if>
+      <if test="firstamount != null" >
+        firstAmount,
+      </if>
+      <if test="endamount != null" >
+        endAmount,
+      </if>
+      <if test="callname != null" >
+        callname,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="callname1 != null" >
+        callname1,
+      </if>
+      <if test="mobile1 != null" >
+        mobile1,
+      </if>
+      <if test="email1 != null" >
+        email1,
+      </if>
+      <if test="organid != null" >
+        organId,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+      <if test="updateuser != null" >
+        updateuser,
+      </if>
+      <if test="checktime != null" >
+        checkTime,
+      </if>
+      <if test="checkuser != null" >
+        checkUser,
+      </if>
+      <if test="checkstatus != null" >
+        checkStatus,
+      </if>
+      <if test="features != null" >
+        features,
+      </if>
+      <if test="include != null" >
+        include,
+      </if>
+      <if test="notinclude != null" >
+        notInclude,
+      </if>
+      <if test="guideid != null" >
+        guideId,
+      </if>
+      <if test="carid != null" >
+        carId,
+      </if>
+      <if test="hotel != null" >
+        hotel,
+      </if>
+      <if test="food != null" >
+        food,
+      </if>
+      <if test="planticket != null" >
+        planTicket,
+      </if>
+      <if test="ticket != null" >
+        ticket,
+      </if>
+      <if test="home != null" >
+        home,
+      </if>
+      <if test="checkremark != null" >
+        checkRemark,
+      </if>
+      <if test="paycoment != null" >
+        payComent,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="teamno != null" >
+        #{teamno,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherteamid != null" >
+        #{otherteamid,jdbcType=VARCHAR},
+      </if>
+      <if test="roadname != null" >
+        #{roadname,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeday != null" >
+        #{noticeday,jdbcType=INTEGER},
+      </if>
+      <if test="paydate != null" >
+        #{paydate,jdbcType=VARCHAR},
+      </if>
+      <if test="numbers != null" >
+        #{numbers,jdbcType=INTEGER},
+      </if>
+      <if test="child != null" >
+        #{child,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="updatestatus != null" >
+        #{updatestatus,jdbcType=CHAR},
+      </if>
+      <if test="groupstatus != null" >
+        #{groupstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentstatus != null" >
+        #{paymentstatus,jdbcType=CHAR},
+      </if>
+      <if test="isshopping != null" >
+        #{isshopping,jdbcType=CHAR},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=INTEGER},
+      </if>
+      <if test="orderflag != null" >
+        #{orderflag,jdbcType=CHAR},
+      </if>
+      <if test="srcflag != null" >
+        #{srcflag,jdbcType=CHAR},
+      </if>
+      <if test="peerid != null" >
+        #{peerid,jdbcType=VARCHAR},
+      </if>
+      <if test="peername != null" >
+        #{peername,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="costamount != null" >
+        #{costamount,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="rateprice != null" >
+        #{rateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="calc != null" >
+        #{calc,jdbcType=CHAR},
+      </if>
+      <if test="calcamount != null" >
+        #{calcamount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstcalc != null" >
+        #{firstcalc,jdbcType=DECIMAL},
+      </if>
+      <if test="firstamount != null" >
+        #{firstamount,jdbcType=DECIMAL},
+      </if>
+      <if test="endamount != null" >
+        #{endamount,jdbcType=DECIMAL},
+      </if>
+      <if test="callname != null" >
+        #{callname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="callname1 != null" >
+        #{callname1,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile1 != null" >
+        #{mobile1,jdbcType=VARCHAR},
+      </if>
+      <if test="email1 != null" >
+        #{email1,jdbcType=VARCHAR},
+      </if>
+      <if test="organid != null" >
+        #{organid,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="checktime != null" >
+        #{checktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkuser != null" >
+        #{checkuser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null" >
+        #{checkstatus,jdbcType=CHAR},
+      </if>
+      <if test="features != null" >
+        #{features,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="include != null" >
+        #{include,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="notinclude != null" >
+        #{notinclude,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="guideid != null" >
+        #{guideid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="carid != null" >
+        #{carid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hotel != null" >
+        #{hotel,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="food != null" >
+        #{food,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="planticket != null" >
+        #{planticket,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ticket != null" >
+        #{ticket,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="home != null" >
+        #{home,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="checkremark != null" >
+        #{checkremark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="paycoment != null" >
+        #{paycoment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.model.TeamsDTOWithBLOBs" >
+    update tsys_beauty_teams
+    <set >
+      <if test="teamno != null" >
+        teamNo = #{teamno,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null" >
+        teamId = #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherteamid != null" >
+        otherTeamId = #{otherteamid,jdbcType=VARCHAR},
+      </if>
+      <if test="roadname != null" >
+        roadName = #{roadname,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null" >
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null" >
+        enddate = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=CHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noticeday != null" >
+        noticeDay = #{noticeday,jdbcType=INTEGER},
+      </if>
+      <if test="paydate != null" >
+        paydate = #{paydate,jdbcType=VARCHAR},
+      </if>
+      <if test="numbers != null" >
+        numbers = #{numbers,jdbcType=INTEGER},
+      </if>
+      <if test="child != null" >
+        child = #{child,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="updatestatus != null" >
+        updateStatus = #{updatestatus,jdbcType=CHAR},
+      </if>
+      <if test="groupstatus != null" >
+        groupStatus = #{groupstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentstatus != null" >
+        paymentStatus = #{paymentstatus,jdbcType=CHAR},
+      </if>
+      <if test="isshopping != null" >
+        isShopping = #{isshopping,jdbcType=CHAR},
+      </if>
+      <if test="room != null" >
+        room = #{room,jdbcType=INTEGER},
+      </if>
+      <if test="orderflag != null" >
+        orderFlag = #{orderflag,jdbcType=CHAR},
+      </if>
+      <if test="srcflag != null" >
+        srcFlag = #{srcflag,jdbcType=CHAR},
+      </if>
+      <if test="peerid != null" >
+        peerId = #{peerid,jdbcType=VARCHAR},
+      </if>
+      <if test="peername != null" >
+        peerName = #{peername,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="costamount != null" >
+        costamount = #{costamount,jdbcType=DECIMAL},
+      </if>
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="rateprice != null" >
+        ratePrice = #{rateprice,jdbcType=DECIMAL},
+      </if>
+      <if test="calc != null" >
+        calc = #{calc,jdbcType=CHAR},
+      </if>
+      <if test="calcamount != null" >
+        calcAmount = #{calcamount,jdbcType=DECIMAL},
+      </if>
+      <if test="firstcalc != null" >
+        firstCalc = #{firstcalc,jdbcType=DECIMAL},
+      </if>
+      <if test="firstamount != null" >
+        firstAmount = #{firstamount,jdbcType=DECIMAL},
+      </if>
+      <if test="endamount != null" >
+        endAmount = #{endamount,jdbcType=DECIMAL},
+      </if>
+      <if test="callname != null" >
+        callname = #{callname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="callname1 != null" >
+        callname1 = #{callname1,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile1 != null" >
+        mobile1 = #{mobile1,jdbcType=VARCHAR},
+      </if>
+      <if test="email1 != null" >
+        email1 = #{email1,jdbcType=VARCHAR},
+      </if>
+      <if test="organid != null" >
+        organId = #{organid,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateuser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="checktime != null" >
+        checkTime = #{checktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkuser != null" >
+        checkUser = #{checkuser,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstatus != null" >
+        checkStatus = #{checkstatus,jdbcType=CHAR},
+      </if>
+      <if test="features != null" >
+        features = #{features,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="include != null" >
+        include = #{include,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="notinclude != null" >
+        notInclude = #{notinclude,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="guideid != null" >
+        guideId = #{guideid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="carid != null" >
+        carId = #{carid,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="hotel != null" >
+        hotel = #{hotel,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="food != null" >
+        food = #{food,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="planticket != null" >
+        planTicket = #{planticket,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ticket != null" >
+        ticket = #{ticket,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="home != null" >
+        home = #{home,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="checkremark != null" >
+        checkRemark = #{checkremark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="paycoment != null" >
+        payComent = #{paycoment,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xsw.model.TeamsDTOWithBLOBs" >
+    update tsys_beauty_teams
+    set teamNo = #{teamno,jdbcType=VARCHAR},
+      teamId = #{teamid,jdbcType=VARCHAR},
+      productId = #{productid,jdbcType=VARCHAR},
+      otherTeamId = #{otherteamid,jdbcType=VARCHAR},
+      roadName = #{roadname,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      enddate = #{enddate,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR},
+      days = #{days,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      noticeDay = #{noticeday,jdbcType=INTEGER},
+      paydate = #{paydate,jdbcType=VARCHAR},
+      numbers = #{numbers,jdbcType=INTEGER},
+      child = #{child,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      updateStatus = #{updatestatus,jdbcType=CHAR},
+      groupStatus = #{groupstatus,jdbcType=VARCHAR},
+      paymentStatus = #{paymentstatus,jdbcType=CHAR},
+      isShopping = #{isshopping,jdbcType=CHAR},
+      room = #{room,jdbcType=INTEGER},
+      orderFlag = #{orderflag,jdbcType=CHAR},
+      srcFlag = #{srcflag,jdbcType=CHAR},
+      peerId = #{peerid,jdbcType=VARCHAR},
+      peerName = #{peername,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      costamount = #{costamount,jdbcType=DECIMAL},
+      rate = #{rate,jdbcType=VARCHAR},
+      ratePrice = #{rateprice,jdbcType=DECIMAL},
+      calc = #{calc,jdbcType=CHAR},
+      calcAmount = #{calcamount,jdbcType=DECIMAL},
+      firstCalc = #{firstcalc,jdbcType=DECIMAL},
+      firstAmount = #{firstamount,jdbcType=DECIMAL},
+      endAmount = #{endamount,jdbcType=DECIMAL},
+      callname = #{callname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      callname1 = #{callname1,jdbcType=VARCHAR},
+      mobile1 = #{mobile1,jdbcType=VARCHAR},
+      email1 = #{email1,jdbcType=VARCHAR},
+      organId = #{organid,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updateuser = #{updateuser,jdbcType=VARCHAR},
+      checkTime = #{checktime,jdbcType=TIMESTAMP},
+      checkUser = #{checkuser,jdbcType=VARCHAR},
+      checkStatus = #{checkstatus,jdbcType=CHAR},
+      features = #{features,jdbcType=LONGVARCHAR},
+      include = #{include,jdbcType=LONGVARCHAR},
+      notInclude = #{notinclude,jdbcType=LONGVARCHAR},
+      guideId = #{guideid,jdbcType=LONGVARCHAR},
+      carId = #{carid,jdbcType=LONGVARCHAR},
+      hotel = #{hotel,jdbcType=LONGVARCHAR},
+      food = #{food,jdbcType=LONGVARCHAR},
+      planTicket = #{planticket,jdbcType=LONGVARCHAR},
+      ticket = #{ticket,jdbcType=LONGVARCHAR},
+      home = #{home,jdbcType=LONGVARCHAR},
+      checkRemark = #{checkremark,jdbcType=LONGVARCHAR},
+      payComent = #{paycoment,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.model.TeamsDTO" >
+    update tsys_beauty_teams
+    set teamNo = #{teamno,jdbcType=VARCHAR},
+      teamId = #{teamid,jdbcType=VARCHAR},
+      productId = #{productid,jdbcType=VARCHAR},
+      otherTeamId = #{otherteamid,jdbcType=VARCHAR},
+      roadName = #{roadname,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      enddate = #{enddate,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR},
+      days = #{days,jdbcType=CHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      noticeDay = #{noticeday,jdbcType=INTEGER},
+      paydate = #{paydate,jdbcType=VARCHAR},
+      numbers = #{numbers,jdbcType=INTEGER},
+      child = #{child,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      status = #{status,jdbcType=CHAR},
+      updateStatus = #{updatestatus,jdbcType=CHAR},
+      groupStatus = #{groupstatus,jdbcType=VARCHAR},
+      paymentStatus = #{paymentstatus,jdbcType=CHAR},
+      isShopping = #{isshopping,jdbcType=CHAR},
+      room = #{room,jdbcType=INTEGER},
+      orderFlag = #{orderflag,jdbcType=CHAR},
+      srcFlag = #{srcflag,jdbcType=CHAR},
+      peerId = #{peerid,jdbcType=VARCHAR},
+      peerName = #{peername,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      costamount = #{costamount,jdbcType=DECIMAL},
+      rate = #{rate,jdbcType=VARCHAR},
+      ratePrice = #{rateprice,jdbcType=DECIMAL},
+      calc = #{calc,jdbcType=CHAR},
+      calcAmount = #{calcamount,jdbcType=DECIMAL},
+      firstCalc = #{firstcalc,jdbcType=DECIMAL},
+      firstAmount = #{firstamount,jdbcType=DECIMAL},
+      endAmount = #{endamount,jdbcType=DECIMAL},
+      callname = #{callname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      callname1 = #{callname1,jdbcType=VARCHAR},
+      mobile1 = #{mobile1,jdbcType=VARCHAR},
+      email1 = #{email1,jdbcType=VARCHAR},
+      organId = #{organid,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updateuser = #{updateuser,jdbcType=VARCHAR},
+      checkTime = #{checktime,jdbcType=TIMESTAMP},
+      checkUser = #{checkuser,jdbcType=VARCHAR},
+      checkStatus = #{checkstatus,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

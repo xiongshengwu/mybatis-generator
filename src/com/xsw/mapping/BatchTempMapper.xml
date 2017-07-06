@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xsw.dao.BatchTempMapper" >
+  <resultMap id="BaseResultMap" type="com.xsw.model.BatchTemp" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="teamNo" property="teamno" jdbcType="VARCHAR" />
+    <result column="teamId" property="teamid" jdbcType="VARCHAR" />
+    <result column="roadName" property="roadname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="numbers" property="numbers" jdbcType="VARCHAR" />
+    <result column="child" property="child" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="productId" property="productid" jdbcType="VARCHAR" />
+    <result column="srcFlag" property="srcflag" jdbcType="VARCHAR" />
+    <result column="peerName" property="peername" jdbcType="VARCHAR" />
+    <result column="startdate" property="startdate" jdbcType="VARCHAR" />
+    <result column="organId" property="organid" jdbcType="VARCHAR" />
+    <result column="organName" property="organname" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="VARCHAR" />
+    <result column="createuser" property="createuser" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, teamNo, teamId, roadName, type, numbers, child, status, productId, srcFlag, peerName, 
+    startdate, organId, organName, currency, amount, createuser, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tsys_batch_temp1
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tsys_batch_temp1
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.model.BatchTemp" >
+    insert into tsys_batch_temp1 (id, teamNo, teamId, 
+      roadName, type, numbers, 
+      child, status, productId, 
+      srcFlag, peerName, startdate, 
+      organId, organName, currency, 
+      amount, createuser, createtime
+      )
+    values (#{id,jdbcType=BIGINT}, #{teamno,jdbcType=VARCHAR}, #{teamid,jdbcType=VARCHAR}, 
+      #{roadname,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{numbers,jdbcType=VARCHAR}, 
+      #{child,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, 
+      #{srcflag,jdbcType=VARCHAR}, #{peername,jdbcType=VARCHAR}, #{startdate,jdbcType=VARCHAR}, 
+      #{organid,jdbcType=VARCHAR}, #{organname,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=VARCHAR}, #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.model.BatchTemp" >
+    insert into tsys_batch_temp1
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="teamno != null" >
+        teamNo,
+      </if>
+      <if test="teamid != null" >
+        teamId,
+      </if>
+      <if test="roadname != null" >
+        roadName,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="numbers != null" >
+        numbers,
+      </if>
+      <if test="child != null" >
+        child,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="productid != null" >
+        productId,
+      </if>
+      <if test="srcflag != null" >
+        srcFlag,
+      </if>
+      <if test="peername != null" >
+        peerName,
+      </if>
+      <if test="startdate != null" >
+        startdate,
+      </if>
+      <if test="organid != null" >
+        organId,
+      </if>
+      <if test="organname != null" >
+        organName,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="createuser != null" >
+        createuser,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="teamno != null" >
+        #{teamno,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="roadname != null" >
+        #{roadname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="numbers != null" >
+        #{numbers,jdbcType=VARCHAR},
+      </if>
+      <if test="child != null" >
+        #{child,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="srcflag != null" >
+        #{srcflag,jdbcType=VARCHAR},
+      </if>
+      <if test="peername != null" >
+        #{peername,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="organid != null" >
+        #{organid,jdbcType=VARCHAR},
+      </if>
+      <if test="organname != null" >
+        #{organname,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.model.BatchTemp" >
+    update tsys_batch_temp1
+    <set >
+      <if test="teamno != null" >
+        teamNo = #{teamno,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null" >
+        teamId = #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="roadname != null" >
+        roadName = #{roadname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="numbers != null" >
+        numbers = #{numbers,jdbcType=VARCHAR},
+      </if>
+      <if test="child != null" >
+        child = #{child,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null" >
+        productId = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="srcflag != null" >
+        srcFlag = #{srcflag,jdbcType=VARCHAR},
+      </if>
+      <if test="peername != null" >
+        peerName = #{peername,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null" >
+        startdate = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="organid != null" >
+        organId = #{organid,jdbcType=VARCHAR},
+      </if>
+      <if test="organname != null" >
+        organName = #{organname,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="createuser != null" >
+        createuser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.model.BatchTemp" >
+    update tsys_batch_temp1
+    set teamNo = #{teamno,jdbcType=VARCHAR},
+      teamId = #{teamid,jdbcType=VARCHAR},
+      roadName = #{roadname,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      numbers = #{numbers,jdbcType=VARCHAR},
+      child = #{child,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      productId = #{productid,jdbcType=VARCHAR},
+      srcFlag = #{srcflag,jdbcType=VARCHAR},
+      peerName = #{peername,jdbcType=VARCHAR},
+      startdate = #{startdate,jdbcType=VARCHAR},
+      organId = #{organid,jdbcType=VARCHAR},
+      organName = #{organname,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      createuser = #{createuser,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
