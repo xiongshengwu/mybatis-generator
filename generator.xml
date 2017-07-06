@@ -12,7 +12,7 @@
 		 <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/beauty" userId="beauty" password="beauty"> 
 		<!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->
 		</jdbcConnection>
-		<javaTypeResolver>my
+		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
@@ -29,6 +29,6 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
-		<table tableName="tsys_batch_temp" domainObjectName="BatchTemp" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
+		<table tableName="tsys_batch_temp1" domainObjectName="BatchTemp" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
 	</context>
 </generatorConfiguration>
